@@ -1,5 +1,5 @@
 {
-  "name": "node_sf_wrapup",
+  "name": "sfwrapup-service",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
