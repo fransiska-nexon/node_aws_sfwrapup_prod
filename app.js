@@ -45,9 +45,22 @@ const authvalidation = function(req, res, next) {
         let back_first_url=first_url;
         first_url='';
 
-        console.log('CLEARING firstAuth: '+firstAuth+ ' first_method: '+first_method+ ' first_url: '+first_url +' back_first_url: '+back_first_url);
-        console.log('calling doWrapup with request: '+back_first_url);
-        doWrapup(back_first_url);
+        console.log('FIRSTAUTH-TRUE CLEARING firstAuth: '+firstAuth+ ' first_method: '+first_method+ ' first_url: '+first_url +' back_first_url: '+back_first_url);
+        console.log('FIRSTAUTH-TRUE calling doWrapup with request: '+back_first_url);
+        //doWrapup(back_first_url);
+
+        (async () => {
+            try {
+                console.log('FIRSTAUTH-TRUE TRY calling doWrapup with request: '+back_first_url);
+                const response = doWrapup(back_first_url);
+                console.log('FIRSTAUTH-TRUE doWrapup finished with request: '+back_first_url);
+                console.log('FIRSTAUTH-TRUE doWrapup status : '+JSON.stringify(response));
+            } catch (error) {
+                console.log('FIRSTAUTH-TRUE doWrapup ERROR finished with request: '+back_first_url);
+                console.log('FIRSTAUTH-TRUE doWrapup ERROR status : '+JSON.stringify(error));
+            }
+        })();
+
     }
 
     console.log('-----------------');
@@ -90,7 +103,7 @@ const authvalidation = function(req, res, next) {
         first_url=req.url;
 
         console.log('this is not firstAuth, so clearing value of firstAuth, first_method and first_url');
-        console.log('firstAuth: '+firstAuth+ ' first_method: '+first_method+ ' first_url: '+first_url+' run dowrapup with url: '+first_url);
+        console.log('not firstAuth: '+firstAuth+ ' first_method: '+first_method+ ' first_url: '+first_url+' run dowrapup with url: '+first_url);
 
 
 
